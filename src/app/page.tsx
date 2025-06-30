@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 
 export default function Home() {
   return (
-    <Button variant="destructive" className="text-center">
+    <Button variant="secondary" className="text-center">
       {' '}
       Hello World
     </Button>
