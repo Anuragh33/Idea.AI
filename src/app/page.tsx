@@ -7,11 +7,14 @@ import { Input } from '@/components/ui/input'
 
 import { authClient } from '@/lib/auth-client'
 
-export default function Home() {
+export default function Page() {
   const {
     data: session,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isPending, //loading state
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     error, //error object
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     refetch, //refetch the session
   } = authClient.useSession()
 
