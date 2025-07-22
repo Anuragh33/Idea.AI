@@ -75,5 +75,17 @@
     "tsx": "^4.19.4",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anuragh33/Idea.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anuragh33/Idea/issues"
+  },
+  "homepage": "https://github.com/Anuragh33/Idea#readme"
 }
