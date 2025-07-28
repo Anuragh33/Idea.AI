@@ -82,8 +82,6 @@
   :root, :host {
     --color-green-700: oklch(52.7% .154 150.069);
     --color-green-900: oklch(39.3% .095 152.535);
-    --color-blue-200: oklch(88.2% .059 254.128);
-    --color-blue-300: oklch(80.9% .105 251.813);
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
@@ -1148,10 +1146,6 @@
 
   .gap-y-5 {
     row-gap: calc(var(--spacing) * 5);
-  }
-
-  .gap-y-8 {
-    row-gap: calc(var(--spacing) * 8);
   }
 
   .self-start {
@@ -2335,20 +2329,8 @@
   }
 
   @media (hover: hover) {
-    .hover\:border-blue-300:hover {
-      border-color: var(--color-blue-300);
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-accent:hover {
       background-color: var(--accent);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-blue-200:hover {
-      background-color: var(--color-blue-200);
     }
   }
 
