@@ -6,11 +6,12 @@ import Link from 'next/link'
 
 import { useForm } from 'react-hook-form'
 
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
-import { Card, CardContent } from '@/components/ui/card'
 import { Alert, AlertTitle } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   Form,
   FormControl,
@@ -20,11 +21,13 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 
 import { OctagonAlertIcon } from 'lucide-react'
 
 import { authClient } from '@/lib/auth-client'
+
+import { FaGithub } from 'react-icons/fa'
+import { FaGoogle } from 'react-icons/fa'
 
 const formSchema = z
   .object({
@@ -49,7 +52,7 @@ export default function SignUpViewPage() {
     defaultValues: { name: '', email: '', password: '', confirmPassword: '' },
   })
 
-  const signUp = async (data: z.infer<typeof formSchema>) => {
+  const onSignup = async (data: z.infer<typeof formSchema>) => {
     setError(null)
     setPending(true)
 
@@ -58,6 +61,7 @@ export default function SignUpViewPage() {
         name: data.name,
         email: data.email,
         password: data.password,
+        callbackURL: '/',
       },
       {
         onSuccess: () => {
@@ -72,12 +76,33 @@ export default function SignUpViewPage() {
     )
   }
 
+  const onSocial = async (provider: 'github' | 'google') => {
+    setError(null)
+    setPending(true)
+
+    await authClient.signIn.social(
+      {
+        provider: provider,
+        callbackURL: '/',
+      },
+      {
+        onSuccess: () => {
+          setPending(false)
+        },
+        onError: (error) => {
+          setPending(false)
+          setError(error.error.message)
+        },
+      }
+    )
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(signUp)} className="p-6 md:p-8">
+            <form onSubmit={form.handleSubmit(onSignup)} className="p-6 md:p-8">
               <div className="flex flex-col gap-6 ">
                 <div className="flex flex-col items-center text-center">
                   <h1 className="text-2xl font-bold">Let&apos;s get Started</h1>
@@ -181,16 +206,18 @@ export default function SignUpViewPage() {
                     variant="outline"
                     type="button"
                     className="w-full"
+                    onClick={() => onSocial('google')}
                   >
-                    Google
+                    <FaGoogle />
                   </Button>
                   <Button
                     disabled={pending}
                     variant="outline"
                     type="button"
                     className="w-full"
+                    onClick={() => onSocial('github')}
                   >
-                    Github
+                    <FaGithub />
                   </Button>
                 </div>
                 <div className="text-center text-sm">
