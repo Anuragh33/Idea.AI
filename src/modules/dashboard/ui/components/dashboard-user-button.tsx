@@ -6,19 +6,18 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from '@radix-ui/react-dropdown-menu'
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu'
+
 import { ChevronDown, CreditCardIcon, LogOutIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 const DashboardUserButton = () => {
   const router = useRouter()
 
-  const { data, ispending } = authClient.useSession()
+  const { data, isPending } = authClient.useSession()
 
   const onLogout = () => {
     authClient.signOut({
@@ -30,7 +29,7 @@ const DashboardUserButton = () => {
     })
   }
 
-  if (ispending || !data?.user) return null
+  if (isPending || !data?.user) return null
 
   return (
     <DropdownMenu>
@@ -46,9 +45,11 @@ const DashboardUserButton = () => {
             className="size-9 mr-3"
           />
         )}
-        <div className="flex flex-col gap-0.5 overflow-hidden text-left flex-1 min-w-0">
-          <p className="text-sm truncate w-full">{data.user.name}</p>
-          <p className="text-xs truncate w-full">{data.user.email}</p>
+        <div className="flex flex-col gap-0.5 pt-1 overflow-hidden text-left flex-1 min-w-0">
+          <p className=" text-center text-sm truncate w-full">
+            {data.user.name}
+          </p>
+          {/* <p className="text-xs truncate w-full">{data.user.email}</p> */}
         </div>
         <ChevronDown className="size-4 shrink-0" />
       </DropdownMenuTrigger>
@@ -56,7 +57,7 @@ const DashboardUserButton = () => {
         <DropdownMenuLabel>
           <div className="flex flex-col gap-1">
             <span className="font-medium truncate">{data.user.name}</span>
-            <span className=" text-sm font-normal truncate text-muted-foreground">
+            <span className="text-xs font-normal truncate text-muted-foreground">
               {data.user.email}
             </span>
           </div>
