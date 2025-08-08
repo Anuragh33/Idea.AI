@@ -25,6 +25,10 @@ import {
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import { Separator } from '@/components/ui/separator'
+>>>>>>> Stashed changes
 =======
 import { Separator } from '@/components/ui/separator'
 >>>>>>> Stashed changes
@@ -74,7 +78,11 @@ const DashboardUserButton = () => {
             <DrawerTitle className="flex items-start">
               {data.user.name}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             </DrawerTitle>{' '}
+=======
+            </DrawerTitle>
+>>>>>>> Stashed changes
 =======
             </DrawerTitle>
 >>>>>>> Stashed changes

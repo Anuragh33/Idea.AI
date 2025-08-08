@@ -7,7 +7,12 @@ import { useSidebar } from '@/components/ui/sidebar'
 
 import { PanelLeftCloseIcon, PanelLeftIcon, SearchIcon } from 'lucide-react'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import DashboardCommand from './Dashboard-command'
+=======
+
+import DashboardCommand from './dashboard-command'
+>>>>>>> Stashed changes
 =======
 
 import DashboardCommand from './dashboard-command'
