@@ -13,7 +13,7 @@ import {
 
 import { ChevronDown, CreditCardIcon, LogOutIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+
 import { useIsMobile } from '@/hooks/use-mobile'
 import {
   Drawer,
@@ -32,8 +32,6 @@ const DashboardUserButton = () => {
   const isMobile = useIsMobile()
 
   const { data, isPending } = authClient.useSession()
-
-  const [commandOpen, setCommandOpen] = useState(false)
 
   const onLogout = () => {
     authClient.signOut({
