@@ -26,6 +26,10 @@ import {
 import { Button } from '@/components/ui/button'
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import { Separator } from '@/components/ui/separator'
+>>>>>>> Stashed changes
 =======
 import { Separator } from '@/components/ui/separator'
 >>>>>>> Stashed changes
@@ -79,7 +83,11 @@ const DashboardUserButton = () => {
               {data.user.name}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             </DrawerTitle>{' '}
+=======
+            </DrawerTitle>
+>>>>>>> Stashed changes
 =======
             </DrawerTitle>
 >>>>>>> Stashed changes
