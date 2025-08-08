@@ -6,7 +6,12 @@ import { Button } from '@/components/ui/button'
 import { useSidebar } from '@/components/ui/sidebar'
 
 import { PanelLeftCloseIcon, PanelLeftIcon, SearchIcon } from 'lucide-react'
+<<<<<<< Updated upstream
 import DashboardCommand from './Dashboard-command'
+=======
+
+import DashboardCommand from './dashboard-command'
+>>>>>>> Stashed changes
 
 const DashboardNavbar = () => {
   const { state, toggleSidebar, isMobile } = useSidebar()

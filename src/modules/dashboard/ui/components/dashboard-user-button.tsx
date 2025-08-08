@@ -24,6 +24,10 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
+<<<<<<< Updated upstream
+=======
+import { Separator } from '@/components/ui/separator'
+>>>>>>> Stashed changes
 
 const DashboardUserButton = () => {
   const router = useRouter()
@@ -69,7 +73,11 @@ const DashboardUserButton = () => {
           <DrawerHeader>
             <DrawerTitle className="flex items-start">
               {data.user.name}
+<<<<<<< Updated upstream
             </DrawerTitle>{' '}
+=======
+            </DrawerTitle>
+>>>>>>> Stashed changes
             <DrawerDescription className="flex items-start">
               {data.user.email}
             </DrawerDescription>
