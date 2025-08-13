@@ -1,3 +1,6 @@
+import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
+
 import { Suspense } from 'react'
 
 import { getQueryClient, trpc } from '@/trpc/server'
@@ -8,14 +11,23 @@ import ErrorState from '@/components/error-state'
 import LoadingState from '@/components/loading-state'
 
 import AgentsView from '@/modules/agents/ui/views/agents-view'
-
-import { ErrorBoundary } from 'react-error-boundary'
 import AgentsListHeader from '@/modules/agents/ui/components/agents-list-header'
 
-const Page = () => {
-  const queryClient = getQueryClient()
+import { ErrorBoundary } from 'react-error-boundary'
 
-  void queryClient.prefetchQuery(trpc.agents.getMan.queryOptions())
+import { auth } from '@/lib/auth'
+
+const Page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
+  if (!session) {
+    redirect('/sign-in')
+  }
+
+  const queryClient = getQueryClient()
+  void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions())
 
   return (
     <>
