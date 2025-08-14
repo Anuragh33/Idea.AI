@@ -41,7 +41,7 @@ export const agentsRouter = createTRPCRouter({
         .values([
           {
             ...input,
-            userId: ctx.auth.session.id,
+            userId: ctx.auth.user.id,
           },
         ])
         .returning()

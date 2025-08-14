@@ -1,1 +1,5 @@
-{}
+{
+  "/api/trpc/[trpc]/route": "app/api/trpc/[trpc]/route.js",
+  "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",
+  "/(dashboard)/agents/page": "app/(dashboard)/agents/page.js"
+}
