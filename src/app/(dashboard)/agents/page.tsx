@@ -15,7 +15,7 @@ import AgentsListHeader from '@/modules/agents/ui/components/agents-list-header'
 const Page = () => {
   const queryClient = getQueryClient()
 
-  void queryClient.prefetchQuery(trpc.agents.getMan.queryOptions())
+  void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions())
 
   return (
     <>

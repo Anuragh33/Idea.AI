@@ -125,3 +125,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Add this to your global CSS file */
+a,
+button,
+[role='button'] {
+  cursor: pointer;
+}
