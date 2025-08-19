@@ -11,8 +11,11 @@ import DataPagination from '../components/data-pagination'
 import EmptyState from '@/components/empty-state'
 
 import UseAgentsFilters from '../../hooks/use-agents-filters'
+import { useRouter } from 'next/navigation'
 
 const AgentsView = () => {
+  const router = useRouter()
+
   const [filters, setFilters] = UseAgentsFilters()
 
   const trpc = useTRPC()
@@ -28,13 +31,19 @@ const AgentsView = () => {
           description=" Create an agent to join your meetings. Each agent will follow your instructions and can interact with participants during the call."
         />
       ) : (
-        <DataTable data={data.items} columns={columns} />
+        <DataTable
+          data={data.items}
+          columns={columns}
+          rowClick={(row) => router.push(`/agents/${row.id}`)}
+        />
       )}
-      <DataPagination
-        page={filters.page}
-        totalPages={data.totalPages}
-        onPageChange={(page) => setFilters({ page })}
-      />
+      {data.items.length !== 0 && (
+        <DataPagination
+          page={filters.page}
+          totalPages={data.totalPages}
+          onPageChange={(page) => setFilters({ page })}
+        />
+      )}
     </div>
   )
 }
