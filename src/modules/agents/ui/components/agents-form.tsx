@@ -47,6 +47,21 @@ const AgentsForm = ({ onSuccess, onCancel, initialValues }: AgentFormProps) => {
           trpc.agents.getMany.queryOptions({})
         )
 
+        onSuccess?.()
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    })
+  )
+
+  const updateAgent = useMutation(
+    trpc.agents.update.mutationOptions({
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(
+          trpc.agents.getMany.queryOptions({})
+        )
+
         if (initialValues?.id) {
           await queryClient.invalidateQueries(
             trpc.agents.getOne.queryOptions({ id: initialValues.id })
@@ -69,11 +84,12 @@ const AgentsForm = ({ onSuccess, onCancel, initialValues }: AgentFormProps) => {
   })
 
   const isEdit = !!initialValues?.id
-  const isPending = createAgent.isPending
+  const isPending = createAgent.isPending || updateAgent.isPending
 
   const onSubmit = (values: z.infer<typeof agentsInsertSchema>) => {
     if (isEdit) {
-      console.log('TODO: update Agent')
+      updateAgent.mutate({ ...values, id: initialValues.id })
+      setTimeout(() => toast.success('Agent Updated!'), 3000)
     } else {
       createAgent.mutate(values)
     }
