@@ -5,7 +5,7 @@ import { useTRPC } from '@/trpc/client'
 import { useSuspenseQuery } from '@tanstack/react-query'
 
 import { columns } from '../components/columns'
-import DataPagination from '../components/data-pagination'
+import DataPagination from '../../../../components/data-pagination'
 
 import EmptyState from '@/components/empty-state'
 

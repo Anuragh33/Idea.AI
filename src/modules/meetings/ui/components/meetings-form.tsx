@@ -28,7 +28,9 @@ import { toast } from 'sonner'
 import { meetingsInsertSchema } from '../../schema'
 
 import { MeetingGetOne } from '../../types'
+
 import GeneratedAvatar from '@/components/generated-avatar'
+
 import NewAgentDialog from '@/modules/agents/ui/components/new-agent-dialog'
 
 interface MeetingFormProps {

@@ -1,26 +1,39 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-
-import { PlusIcon } from 'lucide-react'
-import NewMeetingDialog from './new-meeting-dialog'
 import { useState } from 'react'
 
-//import { DEFAULT_PAGE } from '@/constants'
+import { Button } from '@/components/ui/button'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
+
+import { PlusIcon, XCircleIcon } from 'lucide-react'
+
+import NewMeetingDialog from './new-meeting-dialog'
+
+import MeetingsSearchFilter from './meetings-search-filter'
+
+import StatusFilter from './status-filter'
+
+import AgentIdFilter from './agent-id-filter'
+
+import UseMeetingsFilters from '../../hooks/use-meetings-filters'
+import { DEFAULT_PAGE } from '@/constants'
 
 const MeetingsListHeader = () => {
-  //   const [filters, setFilters] = UseAgentsFilters()
-  //
+  const [filters, setFilters] = UseMeetingsFilters()
+
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  //
-  //   const isAnyFieldModified = !!filters.search
-  //
-  //   const onClearFields = () => {
-  //     setFilters({
-  //       search: '',
-  //       page: DEFAULT_PAGE,
-  //     })
-  //   }
+
+  const isAnyFieldModified =
+    !!filters.search || !!filters.agentId || !!filters.status
+
+  const onClearFilters = () => {
+    setFilters({
+      search: '',
+      status: null,
+      agentId: '',
+      page: DEFAULT_PAGE,
+    })
+  }
 
   return (
     <>
@@ -38,14 +51,23 @@ const MeetingsListHeader = () => {
             New Meeting
           </Button>
         </div>
-        <div className="flex items-center gap-x-2 p-1">
-          {/* <AgentsSearchFilter />
-          {isAnyFieldModified && (
-            <Button variant="outline" size="sm" onClick={() => onClearFields()}>
-              <XCircleIcon />
-            </Button>
-          )} */}
-        </div>
+        <ScrollArea>
+          <div className="flex items-center gap-x-2 p-1">
+            <MeetingsSearchFilter />
+            <StatusFilter />
+            <AgentIdFilter />
+            {isAnyFieldModified && (
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => onClearFilters()}
+              >
+                <XCircleIcon />
+              </Button>
+            )}
+          </div>{' '}
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
     </>
   )

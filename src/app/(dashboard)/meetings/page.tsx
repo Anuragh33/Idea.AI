@@ -17,10 +17,16 @@ import { ErrorBoundary } from 'next/dist/client/components/error-boundary'
 import ErrorState from '@/components/error-state'
 import LoadingState from '@/components/loading-state'
 
-const Page = async () => {
-  const queryClient = getQueryClient()
+import { SearchParams } from 'nuqs'
+import { loadSearchParams } from '@/modules/meetings/params'
 
-  void queryClient.prefetchQuery(trpc.meetings.getMany.queryOptions({}))
+interface Props {
+  searchParams: Promise<SearchParams>
+}
+
+const Page = async ({ searchParams }: Props) => {
+  const filters = await loadSearchParams(searchParams)
+  const queryClient = getQueryClient()
 
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -29,6 +35,10 @@ const Page = async () => {
   if (!session) {
     redirect('/sign-in')
   }
+
+  void queryClient.prefetchQuery(
+    trpc.meetings.getMany.queryOptions({ ...filters })
+  )
 
   return (
     <>
