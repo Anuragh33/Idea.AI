@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Idea.AI
 
-## Getting Started
+Idea.AI is a lightweight Next.js starter focused on fast iteration for AI-powered product ideas. It’s bootstrapped with create-next-app, uses the App Router, and ships with TypeScript, next/font (Geist), and a clean structure so new features (APIs, auth, UI, AI providers) can be added without friction.
 
-First, run the development server:
+## What this project is
 
+- A solid Next.js foundation to prototype AI product ideas quickly.
+- Simple, typed, and ready for production hardening (linting, builds, deploys).
+- Opinionated about basics (App Router, TypeScript, Geist), unopinionated about everything else.
+
+What this really means is: start with a minimal, modern Next.js app and add integrations as the product takes shape.
+
+## Features
+
+- Next.js App Router (app directory)
+- TypeScript-first
+- next/font with Geist for fast, high-quality typography
+- Hot reload and fast dev experience
+- Clean file structure ready for API routes and UI components
+
+## Getting started
+
+Prerequisites:
+- Node.js 18.17+ (or 20+)
+- One package manager: pnpm, npm, yarn, or bun
+
+Install dependencies:
 ```bash
+pnpm install
+# or
+npm install
+# or
+yarn
+# or
+bun install
+```
+
+Run the dev server:
+```bash
+pnpm dev
+# or
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
-# or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Start editing app/page.tsx — changes hot-reload instantly.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+- dev: start local dev server
+- build: create a production build
+- start: run the production server
+- lint: run ESLint
 
-To learn more about Next.js, take a look at the following resources:
+Example:
+```bash
+pnpm build && pnpm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+  layout.tsx        # Root layout and metadata
+  page.tsx          # Home page (edit here to start)
+  globals.css       # Global styles
+public/
+  favicon.ico       # Static assets
+next.config.js      # Next.js configuration
+tsconfig.json       # TypeScript configuration
+.eslintrc.*         # Linting rules
+```
 
-## Deploy on Vercel
+As features grow, consider:
+```
+app/api/            # Route handlers (server APIs)
+components/         # Reusable UI components
+lib/                # Utilities and server helpers
+styles/             # Additional styles
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Configuration and environment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you add APIs, auth, or external services, document the environment variables here. Example:
+
+- NEXT_PUBLIC_API_BASE_URL
+- AUTH_SECRET
+- OPENAI_API_KEY
+
+Create a .env.local file:
+```
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api
+```
+
+Never commit secrets.
+
+## Deployment
+
+Vercel (recommended):
+1. Push to GitHub
+2. Import the repo in Vercel
+3. Configure environment variables (if any)
+4. Deploy
+
+Other platforms:
+```bash
+pnpm build
+pnpm start
+# Ensure PORT env var is respected by your host
+```
+
+## Code quality
+
+- TypeScript strict mode is recommended
+- Run lint before committing:
+```bash
+pnpm lint
+```
+
+Nice-to-add:
+- Prettier for formatting
+- Husky + lint-staged for pre-commit checks
+- GitHub Actions for CI (build, lint, type-check)
+
+## Roadmap (suggested)
+
+- API routes under app/api/*
+- Auth (NextAuth or custom)
+- State management (Zustand or Redux Toolkit)
+- UI kit and theming (e.g., Tailwind or CSS Modules + design tokens)
+- Provider integrations (OpenAI, Anthropic, etc.)
+- Testing (Vitest + React Testing Library)
+- Analytics and logging
+
+## Contributing
+
+1. Fork and create a feature branch
+2. Make focused commits with clear messages
+3. Run dev, build, and lint locally
+4. Open a PR describing the motivation and changes
+
+## License
+
+MIT — see LICENSE.
+
+## Acknowledgements
+
+- Next.js by Vercel
+- Geist via next/font
+
+If you want, I can tailor this further around any specific features you plan to add (APIs, model providers, UI framework, auth flows).
+
+Sources
