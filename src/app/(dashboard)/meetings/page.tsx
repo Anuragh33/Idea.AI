@@ -12,13 +12,14 @@ import { getQueryClient, trpc } from '@/trpc/server'
 
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 
-import { ErrorBoundary } from 'next/dist/client/components/error-boundary'
-
 import ErrorState from '@/components/error-state'
 import LoadingState from '@/components/loading-state'
 
 import { SearchParams } from 'nuqs'
+
 import { loadSearchParams } from '@/modules/meetings/params'
+
+import { ErrorBoundary } from 'react-error-boundary'
 
 interface Props {
   searchParams: Promise<SearchParams>
