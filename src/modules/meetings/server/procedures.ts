@@ -4,6 +4,7 @@ import { meetings } from '@/db/schema'
 import z from 'zod'
 
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init'
+import { TRPCError } from '@trpc/server'
 
 import { and, count, desc, eq, getTableColumns, ilike } from 'drizzle-orm'
 
@@ -13,7 +14,8 @@ import {
   MAX_PAGE_SIZE,
   MIN_PAGE_SIZE,
 } from '@/constants'
-import { TRPCError } from '@trpc/server'
+
+import { meetingsInsertSchema, meetingsUpdateSchema } from '../schema'
 
 export const meetingsRouter = createTRPCRouter({
   // returns only one value
@@ -86,23 +88,28 @@ export const meetingsRouter = createTRPCRouter({
       }
     }),
 
-  //   update: protectedProcedure
-  //     .input(agentsUpdateSchema)
-  //     .mutation(async ({ input, ctx }) => {
-  //       const [updatedAgent] = await db
-  //         .update(agents)
-  //         .set(input)
-  //         .where(
-  //           and(eq(agents.id, input.id), eq(agents.userId, ctx.auth.user.id))
-  //         )
-  //         .returning()
-  //
-  //       if (!updatedAgent)
-  //         throw new TRPCError({ code: 'NOT_FOUND', message: 'Not Found!' })
-  //
-  //       return updatedAgent
-  //     }),
-  //
+  //////////////////////////////////////////////////////////////////////////
+
+  update: protectedProcedure
+    .input(meetingsUpdateSchema)
+    .mutation(async ({ input, ctx }) => {
+      const [updatedMeeting] = await db
+        .update(meetings)
+        .set(input)
+        .where(
+          and(eq(meetings.id, input.id), eq(meetings.userId, ctx.auth.user.id))
+        )
+        .returning()
+
+      if (!updatedMeeting)
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: 'Meeting not Found!',
+        })
+
+      return updatedMeeting
+    }),
+
   //   //////////////////////////////////////////////////////////////////////////
   //
   //   remove: protectedProcedure
@@ -123,25 +130,21 @@ export const meetingsRouter = createTRPCRouter({
 
   //////////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////////////////////////////////////////////////
+  create: protectedProcedure
+    .input(meetingsInsertSchema)
+    .mutation(async ({ input, ctx }) => {
+      const [createdMeeting] = await db
+        .insert(meetings)
+        .values([
+          {
+            ...input,
+            userId: ctx.auth.user.id,
+          },
+        ])
+        .returning()
 
-  // create agent function
-
-  //   create: protectedProcedure
-  //     .input(agentsInsertSchema)
-  //     .mutation(async ({ input, ctx }) => {
-  //       const [createdAgent] = await db
-  //         .insert(agents)
-  //         .values([
-  //           {
-  //             ...input,
-  //             userId: ctx.auth.user.id,
-  //           },
-  //         ])
-  //         .returning()
-  //
-  //       return createdAgent
-  //     }),
+      return createdMeeting
+    }),
 })
 
 //Testing

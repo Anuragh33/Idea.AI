@@ -21,11 +21,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/auth/[...all]/route.js"
     ],
-    "/(dashboard)/agents/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/agents/page.js"
-    ],
     "/(dashboard)/meetings/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
