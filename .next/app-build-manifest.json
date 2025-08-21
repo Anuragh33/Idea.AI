@@ -26,10 +26,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/meetings/page.js"
     ],
+    "/(dashboard)/agents/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/agents/page.js"
+    ],
     "/api/trpc/[trpc]/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/trpc/[trpc]/route.js"
+    ],
+    "/(dashboard)/meetings/[meetingId]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/meetings/[meetingId]/page.js"
     ]
   }
 }
