@@ -1,8 +1,8 @@
 {
   "/api/trpc/[trpc]/route": "app/api/trpc/[trpc]/route.js",
-  "/(dashboard)/meetings/page": "app/(dashboard)/meetings/page.js",
   "/(dashboard)/agents/page": "app/(dashboard)/agents/page.js",
-  "/(dashboard)/meetings/[meetingId]/page": "app/(dashboard)/meetings/[meetingId]/page.js",
   "/(dashboard)/agents/[agentId]/page": "app/(dashboard)/agents/[agentId]/page.js",
-  "/(dashboard)/page": "app/(dashboard)/page.js"
+  "/(dashboard)/page": "app/(dashboard)/page.js",
+  "/(dashboard)/meetings/[meetingId]/page": "app/(dashboard)/meetings/[meetingId]/page.js",
+  "/(dashboard)/meetings/page": "app/(dashboard)/meetings/page.js"
 }
